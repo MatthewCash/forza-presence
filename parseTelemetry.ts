@@ -32,7 +32,6 @@ export const parseTelemetry = (data: Buffer) => {
         if (offset > length - (length % 8)) break;
 
         const type = fh4[datum] as string;
-        data.readInt32LE;
 
         if (type.includes('skip')) {
             offset += Number(type.split('skip')[1]) / 8 ?? 4;
