@@ -20,7 +20,7 @@ const rpcReady = () => {
     console.log('RPC Connected');
     setActivity();
 
-    setActivityInterval = setInterval(setActivity, 1000);
+    setActivityInterval = setInterval(setActivity, 5000);
 };
 
 export const startRPC = () => {
