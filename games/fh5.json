@@ -61,7 +61,7 @@
         "carPerformanceIndex": "s32",
         "drivetrainType": "s32",
         "numCylinders": "s32",
-        "fh4_unknown": "skip96",
+        "fh5_unknown": "skip96",
         "positionX": "f32",
         "positionY": "f32",
         "positionZ": "f32",
