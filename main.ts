@@ -1,18 +1,27 @@
-import { startRPC, stopRPC } from './rpc';
-import { startServer, gameState, TelemetryData } from './socket';
+import { startRPC } from './rpc';
+import fs from 'fs/promises';
+import { Game, Telemetry } from './Game';
 
-startServer();
+const games: Game[] = [];
+let lastTelemetry: Telemetry;
 
-gameState.on('start', startRPC);
-gameState.on('end', stopRPC);
+export const getTelemetry = () => lastTelemetry;
 
-export const getStatus = (data: TelemetryData) => {
-    const { horsePower, speed, torque, gear, boost, rpm } = data;
+const loadGames = async () => {
+    const files = await fs.readdir('games/');
+    const gameFiles = files.filter(file => file.endsWith('.json'));
 
-    return [
-        `${speed.toFixed(1)}mph ${horsePower.toFixed(0)}hp ${torque.toFixed(
-            0
-        )}ft-lb`,
-        `${rpm.toFixed(0)}rpm ${boost.toFixed(1)}psi Gear ${gear}`
-    ];
+    gameFiles.forEach(async gameFile => {
+        const gameData = await import(`./games/${gameFile}`);
+
+        const game = new Game(gameData);
+        game.startSocket();
+
+        game.on('telemetry', telemetry => (lastTelemetry = telemetry));
+
+        games.push(game);
+    });
 };
+
+loadGames();
+startRPC();
