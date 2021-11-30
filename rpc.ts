@@ -6,12 +6,12 @@ let setActivityInterval: NodeJS.Timeout;
 
 const setActivity = () => {
     const telemetry = getTelemetry();
-    const horsePower = telemetry?.power * 0.00134102 ?? 0;
-    const speed = telemetry?.speed * 2.23694 ?? 0;
-    const torque = telemetry?.torque * 0.73756 ?? 0;
-    const gear = telemetry?.gear ?? 0;
-    const boost = telemetry?.boost ?? 0;
-    const rpm = telemetry?.currentEngineRpm ?? 0;
+    const horsePower = telemetry?.power * 0.00134102 || 0;
+    const speed = telemetry?.speed * 2.23694 || 0;
+    const torque = telemetry?.torque * 0.73756 || 0;
+    const gear = telemetry?.gear || 0;
+    const boost = telemetry?.boost || 0;
+    const rpm = telemetry?.currentEngineRpm || 0;
 
     const details = `${speed.toFixed(1)}mph ${horsePower.toFixed(
         0
@@ -19,11 +19,11 @@ const setActivity = () => {
 
     const state = `${rpm.toFixed(0)}rpm ${boost.toFixed(1)}psi Gear ${gear}`;
 
-    console.log({ details, state });
+    const noData = horsePower + speed + torque + gear + boost + rpm === 0;
 
     rpc.setActivity({
-        details,
-        state,
+        details: noData ? 'No Telemetry Data' : details,
+        state: noData ? 'Game Paused' : state,
         largeImageKey: 'forza',
         largeImageText: 'Forza Telemetry'
     });
