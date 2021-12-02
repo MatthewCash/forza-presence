@@ -15,6 +15,8 @@ export interface GameConstructor {
     offsets: Offsets;
 }
 
+const active_timeout = 5000;
+
 export class Game extends EventEmitter {
     id: string;
     name: string;
@@ -22,6 +24,7 @@ export class Game extends EventEmitter {
     private offsets: Offsets;
     private socket: dgram.Socket;
     active: boolean;
+    activeTimer?: NodeJS.Timeout;
 
     constructor({ id, name, socketPort, offsets }: GameConstructor) {
         super();
@@ -52,5 +55,12 @@ export class Game extends EventEmitter {
         const telemetry = parseTelemetry(raw, this.offsets);
 
         this.emit('telemetry', telemetry);
+
+        this.active = true;
+        clearInterval(this.activeTimer);
+        this.activeTimer = setTimeout(
+            () => (this.active = false),
+            active_timeout
+        );
     }
 }
