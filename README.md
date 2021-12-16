@@ -23,7 +23,7 @@ This will need to be disabled for the program to work
 
 Thankfully it can be done on a per-app basis
 
-Steam players should not have to do this
+Steam/Linux players should not have to do this, but I have only tested with Windows store
 
 Run this corresponding powershell command for your game
 
