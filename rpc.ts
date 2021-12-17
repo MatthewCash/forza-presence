@@ -6,6 +6,9 @@ let setActivityInterval: NodeJS.Timeout;
 
 const setActivity = () => {
     const telemetry = getTelemetry();
+
+    const { game, id } = telemetry;
+
     const horsePower = telemetry?.power * 0.00134102 || 0;
     const speed = telemetry?.speed * 2.23694 || 0;
     const torque = telemetry?.torque * 0.73756 || 0;

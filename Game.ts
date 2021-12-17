@@ -5,7 +5,11 @@ import { parseTelemetry } from './parseTelemetry';
 export type Offsets = string[];
 
 export interface Telemetry {
-    [key: string]: number;
+    game: {
+        id: Game['id'];
+        name: Game['name'];
+    };
+    [key: string]: number | any;
 }
 
 export interface GameConstructor {
@@ -53,10 +57,12 @@ export class Game extends EventEmitter {
 
     onSocketMessage(raw: Buffer) {
         const telemetry = parseTelemetry(raw, this.offsets);
+        telemetry.game = { id: this.id, name: this.name };
 
         this.emit('telemetry', telemetry);
 
         this.active = true;
+
         clearInterval(this.activeTimer);
         this.activeTimer = setTimeout(
             () => (this.active = false),
