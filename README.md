@@ -19,11 +19,11 @@ Compatible with Forza Motorsport 7 and Forza Horizon 4 and 5
 ## Network Isolation
 
 Windows store apps prevent localhost connections by default for "security"
-This will need to be disabled for the program to work
+This will need to be disabled for this program to work
 
 Thankfully it can be done on a per-app basis
 
-Steam/Linux players should not have to do this, but I have only tested with Windows store
+Steam/Linux players will not have to do this
 
 Run this corresponding powershell command for your game
 
