@@ -5,7 +5,7 @@ import { parseTelemetry } from './parseTelemetry';
 export type Offsets = string[];
 
 export interface Telemetry {
-    game: {
+    game?: {
         id: Game['id'];
         name: Game['name'];
     };

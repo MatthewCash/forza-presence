@@ -7,6 +7,9 @@ let setActivityInterval: NodeJS.Timeout;
 const setActivity = () => {
     const telemetry = getTelemetry();
 
+    // Exit if no telemetry
+    if (!telemetry) return;
+
     const { game, id } = telemetry;
 
     const horsePower = telemetry?.power * 0.00134102 || 0;
