@@ -1,11 +1,11 @@
 import RPC from 'discord-rpc';
-import { getTelemetry } from './main';
+import { getLatestTelemetry } from './main';
 
 let rpc;
 let setActivityInterval: NodeJS.Timeout;
 
 const setActivity = () => {
-    const telemetry = getTelemetry();
+    const telemetry = getLatestTelemetry();
 
     // Exit if no telemetry
     if (!telemetry) return;

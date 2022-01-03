@@ -1,27 +1,15 @@
+import Forza from '../forza.js';
 import { startRPC } from './rpc';
-import fs from 'fs/promises';
-import { Game, Telemetry } from './Game';
 
-const games: Game[] = [];
-let lastTelemetry: Telemetry;
+const forza = new Forza();
 
-export const getTelemetry = () => lastTelemetry;
+export const getLatestTelemetry = forza.getLatestTelemetry.bind(forza);
 
-const loadGames = async () => {
-    const files = await fs.readdir('games/');
-    const gameFiles = files.filter(file => file.endsWith('.json'));
+const main = async () => {
+    await forza.loadGames();
+    forza.startAllGameSockets();
 
-    gameFiles.forEach(async gameFile => {
-        const gameData = await import(`./games/${gameFile}`);
-
-        const game = new Game(gameData);
-        game.startSocket();
-
-        game.on('telemetry', telemetry => (lastTelemetry = telemetry));
-
-        games.push(game);
-    });
+    startRPC();
 };
 
-loadGames();
-startRPC();
+if (require.main === module) main();
