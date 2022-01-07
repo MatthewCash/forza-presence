@@ -14,7 +14,7 @@ Compatible with Forza Motorsport 7 and Forza Horizon 4 and 5
         - Forza Horizon 4 `9924`
         - Forza Horizon 5 `9925`
 4. If you are using Forza from the Windows Store follow the instructions in [Network Isolation](#network-isolation)
-5. Run the program with `ts-node main.ts`
+5. Run the program with `npm run start`
 
 ## Network Isolation
 
