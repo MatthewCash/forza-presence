@@ -1,4 +1,4 @@
-import Forza from '../forza.js';
+import Forza from 'forza.js';
 import { startRPC } from './rpc';
 
 const forza = new Forza();
