@@ -3,13 +3,15 @@
 A simple Discord rich presence displaying Forza telemetry data
 Compatible with Forza Motorsport 7 and Forza Horizon 4 and 5
 
+Uses [forza.js](https://github.com/MatthewCash/forza.js) library to retrieve in-game telemetry
+
 ## Installation
 
 1. Clone the repository
 2. Install the dependencies with `npm install`
 3. Enable "Data Out" in Forza Settings
     - This is usually near the bottom of `HUD AND GAMEPLAY`
-    - Set IP adress to `127.0.0.1` and port to
+    - Set IP address to `127.0.0.1` and port to
         - Forza Motorsport 7 `9917`
         - Forza Horizon 4 `9924`
         - Forza Horizon 5 `9925`
