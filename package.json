@@ -1,14 +1,14 @@
 {
     "name": "forza-presence",
     "version": "1.1.0",
-    "description": "",
-    "main": "main.ts",
+    "description": "A simple Discord rich presence displaying Forza telemetry data",
+    "main": "src/main.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "ts-node main.ts"
+        "start": "ts-node src/main.ts"
     },
     "keywords": [],
-    "author": "",
+    "author": "Matthew_Cash",
     "license": "ISC",
     "dependencies": {
         "@types/node": "^16.10.2",
