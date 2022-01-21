@@ -9,7 +9,7 @@
     },
     "keywords": [],
     "author": "Matthew_Cash",
-    "license": "ISC",
+    "license": "AGPL-3.0-only",
     "dependencies": {
         "@types/node": "^16.10.2",
         "discord-rpc": "^4.0.1",
